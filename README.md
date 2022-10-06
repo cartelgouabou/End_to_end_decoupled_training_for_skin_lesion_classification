@@ -8,7 +8,7 @@ Skin Lesion Classification](https:) in Pytorch.
 
 ### Abstract figure
 
-![Alt text](ressources/images/abstract_figure.png?raw=true "HMLoss")
+![Alt text](ressources/images/abstract_figure.PNG?)
 ### Dependency
 The code is build with following main libraries
 - [Pytorch](https://www.tensorflow.org) 1.11.0
