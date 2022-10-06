@@ -24,7 +24,7 @@ pip install -r requirements.txt
 ### Dataset
 
 - The original ISIC2018 dataset can be found at the following link [ISIC2018](https://challenge2018.isic-archive.com/task3/training/). 
-- The breakdown into training, validation and test data sets of the original database as a '.csv' file is located in the  '/base/' directory
+- The breakdown into training, validation and test data sets of the original database as a '.csv' file is located in the  `/base/` directory
 - The original data will be preprocessed by `/isic2019_implementation/preprocessing/preprocessImageConstancy.m`and split by `/isic2019_implementation/preprocessing/train_valid_split_task.py`.
 
 
