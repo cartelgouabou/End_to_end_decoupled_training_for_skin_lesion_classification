@@ -1,6 +1,4 @@
 ## End_to_end_decoupled_training_for_skin_lesion_classification
-
-## Rethinking decoupled training with bag of tricks for long-tailed recognition
 _________________
 
 This is the official implementation code of the paper [End-to-End Decoupled Training: a Robust Deep Learning Method for Long-tailed Classification of Dermoscopic Images for
