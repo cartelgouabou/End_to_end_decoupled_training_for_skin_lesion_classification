@@ -84,7 +84,7 @@ net = models.efficientnet_b3(pretrained=True)
 net.classifier[1]=nn.Linear(1536, 7)
 
 net=torch.load(root_path+'/model/efficientnetb3_model.pth')
-net.load_state_dict(torch.load('/media/arthur/Data/PROJET/Class_imbalance/github/ACCV_github/TSNE/checkpoint/isic2019_efficientb3_CE_W_None_F_32_Dis_True_EPOCH_50/best_model_run0.pth'))
+net.load_state_dict(torch.load('/media/arthur/Data/PROJET/Class_imbalance/github/TSNE/checkpoint/isic2019_efficientb3_CE_W_None_F_32_Dis_True_EPOCH_50/best_model_run0.pth'))
 
 if device == 'cuda':
     net = torch.nn.DataParallel(net)
