@@ -28,7 +28,7 @@ from data_utils import get_data,CustomImageDataset
 from train import train, validate,backup
 from visualize import plot_confusion_matrix,learning_curve
 from torch.optim.lr_scheduler import CyclicLR
-from losses import LDAMLoss, FocalLoss, IBLoss, IB_FocalLoss, SoftmaxHardMiningLoss1,SoftmaxHardMiningLoss2,DynamicalMiningLoss1,DynamicalMiningLoss2
+from losses import LDAMLoss, FocalLoss, IBLoss, IB_FocalLoss, SoftmaxHardMiningLoss1,SoftmaxHardMiningLoss2
 # sklearn libraries
 from sklearn.metrics import classification_report
 import warnings
@@ -140,12 +140,8 @@ print('curent case:')
 print(args.loss_type)
 print('List of run:')
 print(args.run_list)
-if 'SHML' in args.loss_type:
+if 'DHML' in args.loss_type:
     args.store_name = '_'.join(['isic2018', 'efficientb3', args.loss_type, 'W' ,args.weighting_type,'F',str(args.ratio_finetune),'D',str(args.delta)])
-elif 'CHML' in args.loss_type:
-    args.store_name = '_'.join(['isic2018', 'efficientb3', args.loss_type, 'W' ,args.weighting_type,'F',str(args.ratio_finetune),'D',str(args.delta),'start_hm_type',args.hm_delay_type])
-elif 'DHML' in args.loss_type:
-    args.store_name = '_'.join(['isic2018', 'efficientb3', args.loss_type, 'W' ,args.weighting_type,'F',str(args.ratio_finetune),'D',str(args.delta),'TH',str(args.max_thresh)])
 else:
     args.store_name = '_'.join(['isic2018', 'efficientb3', args.loss_type, 'W' ,args.weighting_type,'F',str(args.ratio_finetune)])
 prepare_folders(args)
@@ -190,29 +186,12 @@ for run in run_list:
             criterion = FocalLoss(weight=None).to(device)
         elif args.loss_type == 'LDAM':
             criterion = LDAMLoss(weight=None,cls_num_list=cls_num_list).to(device)
-        elif args.loss_type == 'SHML1':
-                criterion = SoftmaxHardMiningLoss1(weight=per_cls_weights,delta=args.delta).to(device)
-        elif args.loss_type == 'SHML2':
-                criterion = SoftmaxHardMiningLoss2(weight=per_cls_weights).to(device)
-        elif args.loss_type == 'CHML1':
-                criterion = nn.CrossEntropyLoss(weight=None).to(device)
-                criterion_hm = SoftmaxHardMiningLoss1(weight=per_cls_weights,delta=args.delta).to(device)
-        elif args.loss_type == 'CHML2':
-             criterion =  criterion = nn.CrossEntropyLoss(weight=None).to(device)
-             criterion_hm =  SoftmaxHardMiningLoss2(weight=per_cls_weights).to(device)
-        elif args.loss_type == 'CHML3':
-                criterion = SoftmaxHardMiningLoss2(weight=None).to(device)
-                criterion_hm = SoftmaxHardMiningLoss1(weight=per_cls_weights,delta=args.delta).to(device)
-        elif args.loss_type == 'CHML4':
-             criterion =  SoftmaxHardMiningLoss2(weight=None).to(device)
-             criterion_hm =  SoftmaxHardMiningLoss2(weight=per_cls_weights).to(device)
         elif args.loss_type == 'DHML1':
                 criterion = SoftmaxHardMiningLoss2(weight=None).to(device)
-                criterion_hm = DynamicalMiningLoss1(weight=per_cls_weights,delta=args.delta,epoch=args.actual_epoch,max_thresh=args.max_thresh,numb_epochs=args.num_epochs).to(device)
+                criterion_hm = SoftmaxHardMiningLoss1(weight=per_cls_weights,delta=args.delta).to(device)
         elif args.loss_type == 'DHML2':
-                criterion = SoftmaxHardMiningLoss2(weight=None).to(device)
-                criterion_hm = DynamicalMiningLoss2(weight=per_cls_weights,epoch=args.actual_epoch,max_thresh=args.max_thresh,numb_epochs=args.num_epochs).to(device)
-
+             criterion =  SoftmaxHardMiningLoss2(weight=None).to(device)
+             criterion_hm =  SoftmaxHardMiningLoss2(weight=per_cls_weights).to(device)
         else:
             warnings.warn('Loss type is not listed')
         loss_train, acc_train, total_loss_train, total_acc_train = train(train_loader, model, criterion, criterion_hm,optimizer,args, epoch, device)
