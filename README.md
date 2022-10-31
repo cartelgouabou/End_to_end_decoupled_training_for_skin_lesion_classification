@@ -33,7 +33,7 @@ pip install -r requirements.txt
 - To train the HMLoss baseline on 2-class version of isic2019 for melanoma versus nevi classification
 
 ```bash
-python train_isic.py --loss_type 'HML1' --delta 10000   
+python train_isic.py --loss_type 'DHML1' --weighting_type CS   
 ```
 
 ### Reference
