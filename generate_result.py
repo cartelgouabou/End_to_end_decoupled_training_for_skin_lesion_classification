@@ -36,12 +36,8 @@ metric_list=['mean_BACC','std_BACC','mean_AUC','std_AUC','median_BACC','median_A
 
 
 data=[]
-if 'SHML' in args.loss_type:
+if 'DHML' in args.loss_type:
     args.store_name = '_'.join(['isic2018', 'efficientb3', args.loss_type, 'W' ,args.weighting_type,'F',str(args.ratio_finetune),'D',str(args.delta)])
-elif 'CHML' in args.loss_type:
-    args.store_name = '_'.join(['isic2018', 'efficientb3', args.loss_type, 'W' ,args.weighting_type,'F',str(args.ratio_finetune),'D',str(args.delta),'start_hm_type',args.hm_delay_type])
-elif 'DHML' in args.loss_type:
-    args.store_name = '_'.join(['isic2018', 'efficientb3', args.loss_type, 'W' ,args.weighting_type,'F',str(args.ratio_finetune),'D',str(args.delta),'TH',str(args.max_thresh)])
 else:
     args.store_name = '_'.join(['isic2018', 'efficientb3', args.loss_type, 'W' ,args.weighting_type,'F',str(args.ratio_finetune)])
 
@@ -62,12 +58,8 @@ data=np.array([stats])
 p_stat=pd.DataFrame(data,
                 #index=case,
                 columns=metric_list)
-if 'SHML' in args.loss_type:
-    name_result='_'.join(['statistic','isic2018', 'efficientb3', args.loss_type, 'W' ,args.weighting_type,'F',str(args.ratio_finetune),'D',str(args.delta)+'.csv'])
-elif 'CHML' in args.loss_type:
-    name_result='_'.join(['statistic','efficientb3', args.loss_type, 'W' ,args.weighting_type,'F',str(args.ratio_finetune),'D',str(args.delta),'start_hm_type',args.hm_delay_type+'.csv'])
-elif 'DHML' in args.loss_type:
-    name_result='_'.join(['statistic','efficientb3',args.loss_type, 'W' ,args.weighting_type,'F',str(args.ratio_finetune),'D',str(args.delta),'TH',str(args.max_thresh)+'.csv'])
+if 'DHML' in args.loss_type:
+    name_result='_'.join(['statistic','efficientb3',args.loss_type, 'W' ,args.weighting_type,'F',str(args.ratio_finetune),'D',str(args.delta),'.csv'])
 else:
     args.store_name = '_'.join(['statistic','isic2018', 'efficientb3', args.loss_type, 'W' ,args.weighting_type,'F',str(args.ratio_finetune)+'.csv'])
 p_stat.to_csv(path_stat+name_result)
