@@ -2,7 +2,7 @@
 _________________
 
 This is the official implementation code of the paper [End-to-End Decoupled Training: a Robust Deep Learning Method for Long-tailed Classification of Dermoscopic Images for
-Skin Lesion Classification](https:) in Pytorch.
+Skin Lesion Classification](https://doi.org/10.3390/electronics11203275) in Pytorch.
 
 ### Abstract figure
 
@@ -41,11 +41,14 @@ python train_isic.py --loss_type 'HML1' --delta 10000
 If you find our paper and repo useful, please cite as
 
 ```
-@Article{foahom2022end,
-  title={End-to-End Decoupled Training: a Robust Deep Learning Method for Long-tailed Classification of Dermoscopic Images for Skin Lesion Classification},
-  author={Foahom Gouabou, Arthur Cartel and Iguernaissi, Rabah and Damoiseaux, Jean Luc and Moudafi, Abdellatif and Merad, Djamal},
-  JOURNAL = {Electronics},
-  DOI = {},
-  pages={},
-  year={2022}
+@article{foahom2022end,
+  title={End-to-End Decoupled Training: A Robust Deep Learning Method for Long-Tailed Classification of Dermoscopic Images for Skin Lesion Classification},
+  author={Foahom Gouabou, Arthur Cartel and Iguernaissi, Rabah and Damoiseaux, Jean-Luc and Moudafi, Abdellatif and Merad, Djamal},
+  journal={Electronics},
+  volume={11},
+  number={20},
+  pages={3275},
+  year={2022},
+  publisher={MDPI}
 }
+
