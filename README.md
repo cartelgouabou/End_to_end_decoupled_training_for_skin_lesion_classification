@@ -25,12 +25,12 @@ pip install -r requirements.txt
 
 - The original ISIC2018 dataset can be found at the following link [ISIC2018](https://challenge2018.isic-archive.com/task3/training/). 
 - The breakdown into training, validation and test data sets of the original database as a '.csv' file is located in the  `/base/` directory
-- The original data will be preprocessed by `/isic2019_implementation/preprocessing/preprocessImageConstancy.m`and split by `/isic2019_implementation/preprocessing/train_valid_split_task.py`.
+
 
 
 ###Training
 
-- To train the HMLoss baseline on 2-class version of isic2019 for melanoma versus nevi classification
+- To start training the model
 
 ```bash
 python train_isic.py --loss_type 'DHML1' --weighting_type CS   
